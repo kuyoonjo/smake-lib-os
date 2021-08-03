@@ -1,14 +1,11 @@
-import { sep, resolve } from 'path';
+import { resolve } from 'path';
 import { LLVM } from 'smake';
 
 export function os(t: LLVM) {
   Object.defineProperty(t, 'sysIncludedirs', {
     value: [
       ...t.sysIncludedirs,
-      resolve(__dirname, '..', 'os', 'include').replace(
-        new RegExp(sep, 'g'),
-        '/'
-      ),
+      resolve(__dirname, '..', 'os', 'include').replace(/\\/g, '/'),
     ],
     configurable: true,
   });

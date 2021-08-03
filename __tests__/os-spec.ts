@@ -1,7 +1,7 @@
 import { os } from '../src/os';
 import { LLVM_Darwin } from 'smake';
 import { addLibs } from '@smake/libs';
-import { resolve, sep } from 'path';
+import { resolve } from 'path';
 
 test('os', () => {
   class A extends LLVM_Darwin {
@@ -9,10 +9,7 @@ test('os', () => {
   }
   const B = addLibs(A, os, os, os);
   const b = new B();
-  const p = resolve(__dirname, '..', 'os', 'include').replace(
-    new RegExp(sep, 'g'),
-    '/'
-  );
+  const p = resolve(__dirname, '..', 'os', 'include').replace(/\\/g, '/');
   expect(b.sysIncludedirs.includes(p)).toBe(true);
   expect(b.cxxflags.includes('-D_CRT_SECURE_NO_WARNINGS')).toBe(true);
   expect(b.sysIncludedirs.length).toBe(3);
