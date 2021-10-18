@@ -9,7 +9,7 @@ test('os', () => {
   }
   const B = addLibs(A, os, os, os);
   const b = new B();
-  const p = resolve(__dirname, '..', 'os', 'include').replace(/\\/g, '/');
+  const p = resolve(__dirname, '..', 'include').replace(/\\/g, '/');
   expect(b.sysIncludedirs.includes(p)).toBe(true);
   expect(b.cxxflags.includes('-D_CRT_SECURE_NO_WARNINGS')).toBe(true);
   expect(b.sysIncludedirs.length).toBe(3);

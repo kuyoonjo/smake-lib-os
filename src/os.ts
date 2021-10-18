@@ -5,7 +5,7 @@ export function os(t: LLVM) {
   Object.defineProperty(t, 'sysIncludedirs', {
     value: [
       ...t.sysIncludedirs,
-      resolve(__dirname, '..', 'os', 'include').replace(/\\/g, '/'),
+      resolve(__dirname, '..', 'include').replace(/\\/g, '/'),
     ],
     configurable: true,
   });
