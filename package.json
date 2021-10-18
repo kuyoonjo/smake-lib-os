@@ -19,7 +19,7 @@
   ],
   "files": [
     "lib",
-    "os/include"
+    "include"
   ],
   "main": "lib/index",
   "types": "lib/index",
