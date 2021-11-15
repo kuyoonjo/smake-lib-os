@@ -1,8 +1,8 @@
-#include <os/tmpdir.h>
+#include <ex/os.h>
 #include <iostream>
 
 int main() {
-  auto dir = os::tmpdir();
+  auto dir = ex::os::tmpdir();
   std::cout << dir << std::endl;
     return 0;
 }

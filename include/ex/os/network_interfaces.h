@@ -26,6 +26,7 @@
 #pragma comment(lib, "Ws2_32.lib")
 #endif
 
+namespace ex {
 namespace os {
 enum ip_family { all = 0, ipv4 = AF_INET, ipv6 = AF_INET6 };
 
@@ -221,3 +222,4 @@ inline std::vector<network_interface_t> network_interfaces() {
   return nis;
 }
 } // namespace os
+} // namespace ex

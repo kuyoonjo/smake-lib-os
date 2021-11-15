@@ -1,8 +1,8 @@
-#include <os/arch.h>
+#include <ex/os.h>
 #include <iostream>
 
 int main() {
-  auto arch = os::arch();
+  auto arch = ex::os::arch();
   std::cout << arch << std::endl;
     return 0;
 }

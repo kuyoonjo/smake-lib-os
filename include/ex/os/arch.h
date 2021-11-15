@@ -1,5 +1,8 @@
+#pragma once
+
 #include <string>
 
+namespace ex {
 namespace os {
 inline std::string arch() {
 #if defined(__aarch64__)
@@ -50,3 +53,4 @@ inline std::string arch() {
   return "Unknown";
 }
 } // namespace os
+} // namespace ex

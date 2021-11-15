@@ -1,11 +1,11 @@
 #include <cstdio>
-#include <os/network_interfaces.h>
+#include <ex/os.h>
 #include <iostream>
 
 int main(int argc, char **argv)
 {
-  auto nis = os::network_interfaces();
-  auto hasIp = os::filter_network_interfaces(nis, os::network_interface_filter::has_ip, os::ip_family::all);
+  auto nis = ex::os::network_interfaces();
+  auto hasIp = ex::os::filter_network_interfaces(nis, ex::os::network_interface_filter::has_ip, ex::os::ip_family::all);
   for (auto it = hasIp.begin(); it != hasIp.end(); ++it)
   {
     std::printf("%s %02x:%02x:%02x:%02x:%02x:%02x\n", it->name.c_str(), it->mac[0], it->mac[1], it->mac[2], it->mac[3], it->mac[4], it->mac[5]);
@@ -14,10 +14,10 @@ int main(int argc, char **argv)
       std::string family = "unknown";
       switch (itr->family)
       {
-      case os::ip_family::ipv4:
+      case ex::os::ip_family::ipv4:
         family = "ipv4";
         break;
-      case os::ip_family::ipv6:
+      case ex::os::ip_family::ipv6:
         family = "ipv6";
         break;
       default:

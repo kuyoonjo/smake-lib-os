@@ -10,3 +10,5 @@
 /.vscode
 /.ninja_log
 /package-lock.json
+/.cache
+/compile_commands.json
