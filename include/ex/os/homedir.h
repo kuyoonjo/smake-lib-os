@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include <filesystem>
 
 #ifdef __linux__
 #include <pwd.h>
@@ -10,7 +10,7 @@
 
 namespace ex {
 namespace os {
-inline std::string homedir() {
+inline std::filesystem::path homedir() {
 #ifdef __APPLE__
   const char *homeEnv = std::getenv("HOME");
   return homeEnv;
