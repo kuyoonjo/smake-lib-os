@@ -20,6 +20,6 @@ int main() {
     int b;
   };
   A *a = nullptr;
-  std::cout << a->b << std::endl;
+  // std::cout << a->b << std::endl;
   return 0;
 }

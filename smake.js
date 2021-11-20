@@ -7,9 +7,11 @@ const items = readdirSync(join(__dirname, 'test'))
   .filter(x => x.endsWith('.cc'))
   .map(x => {
     const name = x.replace(/\.cc$/, '');
-    const item = new LLVM(name, 'arm64-apple-darwin');
+    // const item = new LLVM(name, 'arm64-apple-darwin');
     // const item = new LLVM(name, 'x86_64-pc-windows-msvc');
     // const item = new LLVM(name, 'aarch64-linux-gnu');
+    const item = new LLVM(name, 'x86_64-linux-gnu');
+    item.useClangHeaders = true;
     item.files = ['test/' + x];  
     item.ldflags = [
       ...item.ldflags,
@@ -28,14 +30,14 @@ class Test extends Toolchain {
       return [];
     return items.map(x => ({
       label: 'test ' + x.name,
-      // cmd: x.outputPath,
+      cmd: x.outputPath,
       // cmd: 'wine ' + x.outputPath,
-      cmd: 'linux arm64 ' + x.outputPath,
+      // cmd: 'linux arm64 ' + x.outputPath,
     }));
   }
 }
 
 module.exports = [
   ...items, 
-  // new Test(),
+  new Test(),
 ];

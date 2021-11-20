@@ -20,27 +20,27 @@
 #endif
 
 #ifdef _WIN32
-#define WIN_ONLY(x) x
+#define _M_WIN_ONLY(x) x
 #else
-#define WIN_ONLY(x)
+#define _M_WIN_ONLY(x)
 #endif
 
 namespace ex {
 namespace os {
-WIN_ONLY(using pexception = PEXCEPTION_POINTERS;)
+_M_WIN_ONLY(using pexception = PEXCEPTION_POINTERS;)
 using exit_handler_t = void (*)(int sig, void* p);
 
 inline void onexit(exit_handler_t cb) {
   static exit_handler_t exit_handler = cb;
 #pragma remove_line
-  WIN_ONLY(static bool exception_not_caught = true;)
+  _M_WIN_ONLY(static bool exception_not_caught = true;)
   std::atexit([]() {
     std::cout << "atexit" << std::endl;
-    WIN_ONLY(if (exception_not_caught))
+    _M_WIN_ONLY(if (exception_not_caught))
     exit_handler(0, nullptr);
   });
   static auto on_signal = [](int sig) {
-    WIN_ONLY(if (exception_not_caught))
+    _M_WIN_ONLY(if (exception_not_caught))
     exit_handler(sig, nullptr);
     signal(sig, SIG_DFL);
     raise(sig);
@@ -84,3 +84,5 @@ inline void onexit(exit_handler_t cb) {
 
 } // namespace os
 } // namespace ex
+
+#undef _M_WIN_ONLY
