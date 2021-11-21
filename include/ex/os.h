@@ -7,5 +7,6 @@
 #include "./os/network_interfaces.h"
 #include "./os/onexit.h"
 #include "./os/pid.h"
-#include "./os/tmpdir.h"
 #include "./os/signal.h"
+#include "./os/tmpdir.h"
+#include "./os/totalmem.h"

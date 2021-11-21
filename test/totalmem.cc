@@ -3,6 +3,6 @@
 #include <stdexcept>
 
 int main() {
-  std::cout << "pid:" << ex::os::pid() << std::endl;
+  std::cout << "totalmem:" << ex::os::totalmem() << std::endl;
   return 0;
 }
