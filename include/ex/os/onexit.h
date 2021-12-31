@@ -30,14 +30,18 @@ namespace os {
 _M_WIN_ONLY(using pexception = PEXCEPTION_POINTERS;)
 using exit_handler_t = void (*)(int sig, void* p);
 
+static inline int exit_code = 0;
+inline void exit(int __status) {
+  exit_code = __status;
+  ::exit(__status);
+}
+
 inline void onexit(exit_handler_t cb) {
   static exit_handler_t exit_handler = cb;
-#pragma remove_line
   _M_WIN_ONLY(static bool exception_not_caught = true;)
   std::atexit([]() {
-    std::cout << "atexit" << std::endl;
     _M_WIN_ONLY(if (exception_not_caught))
-    exit_handler(0, nullptr);
+    exit_handler(exit_code, nullptr);
   });
   static auto on_signal = [](int sig) {
     _M_WIN_ONLY(if (exception_not_caught))
